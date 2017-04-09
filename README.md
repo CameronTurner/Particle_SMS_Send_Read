@@ -1,5 +1,10 @@
 # Particle_SMS_Send_Read
-Lets you read incoming messages, process the commands from them and respond with a SMS confirmation.
+This code will let you read incoming messages, process the commands from them and respond with a SMS confirmation.
+
+## What Devices and Software does it work with?
+    1. Particle Electron www.particle.io
+    2. Particle Electron Firmware version 6.0.1 (as tested)
+    3. Ublox module as integrated on the Particle Electron 2016-2017 model. 
 
 ## Thank you to:
 1. ScruffR for providing the SMS send commands
@@ -25,7 +30,12 @@ Lets you read incoming messages, process the commands from them and respond with
   4. Change the 'alert number' to a new number
     9999,newnumber,+61400000000
     
-    
+## Before Flashing to your device
+Remember to change the 3 user specified variables toward the top of the share-sms.ino file before flashing to your device
+    STARTUP(cellular_credentials_set("telstra.extranet", "", "", NULL));  
+    String alertNumber = "+614xxxxxxxx";  
+    String userCode = "1234"; 
+
 ## What would I do, if given more time? Or.. love for someone else to branch fixes for?? ;)
     
    1. Test SMS lengths and impacts of sending long messages over two SMS's to the device
