@@ -3,7 +3,7 @@ This code will let you read incoming messages, process the commands from them an
 
 ## What Devices and Software does it work with?
     1. Particle Electron www.particle.io
-    2. Particle Electron Firmware version 6.0.1 (as tested)
+    2. Particle Electron Firmware version 0.6.1 (as tested)
     3. Ublox module as integrated on the Particle Electron 2016-2017 model. 
 
 ## Thank you to:
