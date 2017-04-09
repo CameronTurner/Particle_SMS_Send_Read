@@ -31,10 +31,11 @@ This code will let you read incoming messages, process the commands from them an
     9999,newnumber,+61400000000
     
 ## Before Flashing to your device
-Remember to change the 3 user specified variables toward the top of the share-sms.ino file before flashing to your device
-    STARTUP(cellular_credentials_set("telstra.extranet", "", "", NULL));  
-    String alertNumber = "+614xxxxxxxx";  
-    String userCode = "1234"; 
+Remember to change the 3 user specified variables toward the top of the readsms.ino file before flashing to your device
+    
+   1. STARTUP(cellular_credentials_set("telstra.extranet", "", "", NULL));  
+   2. String alertNumber = "+614xxxxxxxx";  
+   3. String userCode = "1234"; 
 
 ## What would I do, if given more time? Or.. love for someone else to branch fixes for?? ;)
     
