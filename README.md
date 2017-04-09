@@ -1,2 +1,37 @@
 # Particle_SMS_Send_Read
-Lets you read incoming messages, process the commands from them and respond with a SMS confirmation
+Lets you read incoming messages, process the commands from them and respond with a SMS confirmation.
+
+Thank you to:
+1. ScruffR for providing the SMS send commands
+    https://community.particle.io/u/scruffr/summary
+
+2. Twilio SMS library for uCommand.cpp and uCommand.h components and some other main file read SMS aspects.
+    https://github.com/twilio/internet-of-bling
+
+3. Developer_BT for pointing me in the rirght direction for this project.
+  https://community.particle.io/u/developer_bt/summary
+
+Overview:
+  Send a SMS to the Particle device in the below format:
+  <userCode>,<command>,<command_option>
+  
+  Examples commands : 
+  1. Turn D7 on
+    1234,on
+  2. Turn D7 off
+    1234,off
+  3. Change my passcode default of 1234 to 9999
+    1234,newcode,9999
+  4. Change the 'alert number' to a new number
+    9999,newnumber,+61400000000
+    
+    
+What would I do, if given more time? Or.. love for someone else to branch fixes for?? ;)
+    
+   1. Test SMS lengths and impacts of sending long messages over two SMS's to the device
+   2. Swap out all String references for char
+   3. Swap if statements for 'case' to make it a bit cleaner
+   4. Include more error processing and checking
+   5. Investigate the impact of using > STARTUP(cellular_sms_received_handler_set(smsRecvCheck, NULL, NULL)); --instead of say an interrupt >     attachInterrupt(RI_UC, smsRecvCheck, CHANGE);
+   6. Add in some more robust SMS rate limiting to prevent the device being kicked off the SMS/3G network for spamming or getting stuck in a loop somehow where it sends too many SMS's. Good to have as a precaution. 
+   7. Add in the save to non-volatile memory for userCode and alertNumber so changes saved are not lost on reboot.
