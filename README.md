@@ -10,8 +10,8 @@ This code will let you read incoming messages, process the commands from them an
 1. ScruffR for providing the SMS send commands
     https://community.particle.io/u/scruffr/summary
 
-2. Twilio SMS library for uCommand.cpp and uCommand.h components and some other main file read SMS aspects.
-    https://github.com/twilio/internet-of-bling
+2. Robynjayqueerie SMS library for uCommand.cpp and uCommand.h components and some other main file read SMS aspects.
+    https://github.com/robynjayqueerie/electron-atcommand-library4
 
 3. Developer_BT for pointing me in the rirght direction for this project.
   https://community.particle.io/u/developer_bt/summary
