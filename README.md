@@ -1,3 +1,5 @@
+Warning: Test and validate this code to ensure it works for your needs. No warranty, guarantees are given. 
+
 # Particle_SMS_Send_Read
 This code will let you read incoming messages, process the commands from them and respond with a SMS confirmation.
 
