@@ -3,7 +3,7 @@
 
 #define RADIO Cellular
 
-STARTUP(cellular_sms_received_handler_set(smsRecvCheck, NULL, NULL));
+STARTUP(cellular_sms_received_handler_set(smsRecvFlag, NULL, NULL));
 
 //--------THINGS YOU MUST CHANGE BEFORE FLASHING TO THE PARTICLE ELECTRON ------------
 STARTUP(cellular_credentials_set("telstra.extranet", "", "", NULL));  //change telstra.extranet to your own APN if using a 3rd party SIM or remove this whole line if you are using a Particle SIM
@@ -18,6 +18,8 @@ uCommand uCmd;
 
 int smsSent = 0;
 int smsLimit = 3;
+
+int smsAvailableFlag = 0;
 //------SETUP-------
 void setup()
 {
@@ -46,6 +48,12 @@ void setup()
 //--All of the functions are triggered outside of the loop at this stage, as such - no code here.
 void loop()
 {
+
+    if (smsAvailableFlag == 1)
+    {
+        smsRecvCheck();
+        smsAvailableFlag = 0;
+    }
 
 }
 //-------END LOOP--------
@@ -162,8 +170,6 @@ int processMessage(String messageText, String phoneReturn)
         if (smsProvided_Command == "on")
             {
                 digitalWrite(D7, HIGH);
-                Particle.publish("Phone", phoneReturn, 60, PRIVATE);
-                Particle.publish("MSG", messageText, 60, PRIVATE);
                 sendSMS("Turned On!", phoneReturn);
                 return 1;
             }
@@ -239,7 +245,7 @@ int processMessage(String messageText, String phoneReturn)
 //Keep in mind here - I have found for every 1 SMS send, the for loop appears to run twice. So a '2nd' blank SMS seems to appear.
 //You should check this with your own testing 
 //Given we do not act on a SMS that doesn't match the user code - this isn't much of an issue.
-void smsRecvCheck(void* data, int index)
+void smsRecvCheck()
 {
         int i;
         // read next available messages
@@ -291,4 +297,9 @@ void deleteSMSOnStart()
             }
             uCmd.smsPtr++;
         }
+}
+
+void smsRecvFlag(void* data, int index)
+{
+    smsAvailableFlag = 1;
 }
