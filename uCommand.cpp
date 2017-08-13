@@ -26,10 +26,13 @@ char i;
 char* cp;
 char* ep;
 
+  
 	_messPtr = _messResults;
 	for(i=0;i<_messN;i++)_messPtr++;	// need to point at the right location
-	tp = (char*)buf + len;
+	  
+    tp = (char*)buf + len;
 	*tp = 0;	// the buffer is not null terminated so we don't want leftover crap
+
 	if(_u_debug)Serial.printlnf("Response in callback %x: %i : %s: \r\n",type,len,buf);
 	switch(type) {
 		case TYPE_UNKNOWN :
@@ -61,7 +64,7 @@ char* ep;
 				cp++;
 				ep = cp;
 				while(*ep != '"')ep++;
-				strncpy(_messPtr->status,cp,(char)(ep-cp));	// read, etc status
+				strcpy(_messPtr->sms,buf);	// read, etc status
 				cp = ep+1;
 				while(*cp != '"')cp++;
 				cp++;
